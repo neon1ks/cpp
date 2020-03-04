@@ -36,6 +36,24 @@ int main()
 	std::cout << "Orig = \"" << path7 << "\"\n";
 	std::cout << "Good = \"" << neon1ks::GoodPath(path7) << "\"\n"
 			  << std::endl;
+
+
+	string dirName1 = "dirName1";
+	string dirName2 = "\\dirName2\\";
+	string dirName3 = "/dirName3/";
+
+	std::cout << "AppendPath = \"" << path7 + neon1ks::DirSep + dirName1 << "\"\n";
+	std::cout << "ConcatPath = \"" << neon1ks::ConcatPath(path7, dirName1) << "\"\n"
+			  << std::endl;
+
 	
+	std::cout << "AppendPath = \"" << path7 + neon1ks::DirSep + dirName2 << "\"\n";
+	std::cout << "ConcatPath = \"" << neon1ks::ConcatPath(path7, dirName2) << "\"\n"
+			  << std::endl;
+
+	std::cout << "AppendPath = \"" << path7 + neon1ks::DirSep + dirName3 << "\"\n";
+	std::cout << "ConcatPath = \"" << neon1ks::ConcatPath(path7, dirName3) << "\"\n"
+			  << std::endl;
+
 	return 0;
 }

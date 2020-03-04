@@ -15,6 +15,25 @@ namespace
 	constexpr char FileSepChars = '/';
 #endif
 
+	// inpl обозначает In-place algorithm: https://en.wikipedia.org/wiki/In-place_algorithm
+	namespace inpl
+	{
+		string& AppendPath(string& first, const string& second)
+		{
+			if (second.empty())
+				return first;
+			if (!first.empty())
+				first.append(neon1ks::DirSep);
+			return first.append(second);
+		}
+	}  // namespace inpl
+
+	string AppendPath(const string& first, const string& second)
+	{
+		string wc = first;
+		return inpl::AppendPath(wc, second);
+	}
+
 	// Является ли символ разделителем
 	inline bool IsSep(char ch)
 	{
@@ -64,6 +83,29 @@ namespace neon1ks
 #endif
 
 		return res;
+	}
+
+	string ConcatNPath(int n, ...)
+	{
+		string res;
+		std::va_list vl;
+		va_start(vl, n);
+		while (--n >= 0)
+		{
+			res = AppendPath(res, va_arg(vl, char*));
+		}
+		va_end(vl);
+		return GoodPath(res);
+	}
+
+	string ConcatPath(const string& first, const string& second)
+	{
+		return GoodPath(AppendPath(first, second));
+	}
+
+	string ConcatPath(const string& first, const string& second, const string& third)
+	{
+		return GoodPath(AppendPath(AppendPath(first, second), third));
 	}
 
 }  // namespace neon1ks
