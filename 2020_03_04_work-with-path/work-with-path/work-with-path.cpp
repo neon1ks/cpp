@@ -9,11 +9,7 @@
 namespace
 {
 
-#ifdef MSWindows
-	constexpr char* FileSepChars = "\\/";
-#else
-	constexpr char FileSepChars = '/';
-#endif
+	constexpr const char* FileSepChars = "\\/";
 
 	// inpl обозначает In-place algorithm: https://en.wikipedia.org/wiki/In-place_algorithm
 	namespace inpl
@@ -37,11 +33,7 @@ namespace
 	// Является ли символ разделителем
 	inline bool IsSep(char ch)
 	{
-#ifdef MSWindows
 		return std::strchr(FileSepChars, ch) != nullptr;
-#else
-		return ch == FileSepChars;
-#endif
 	}
 
 }  // namespace

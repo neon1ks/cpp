@@ -12,11 +12,11 @@
 namespace neon1ks
 {
 #ifdef MSWindows
-	constexpr char* DirSep = "\\";
-	constexpr char DirSepChar = '\\';
+	constexpr const char* DirSep = "\\";
+	constexpr const char DirSepChar = '\\';
 #else
-	constexpr char* DirSep = "/";
-	constexpr char DirSepChar = '/';
+	constexpr const char* DirSep = "/";
+	constexpr const char DirSepChar = '/';
 #endif
 
 	/**
